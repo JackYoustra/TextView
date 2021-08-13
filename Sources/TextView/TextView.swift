@@ -39,6 +39,7 @@ public struct TextView: View {
 		@Binding private var isEditing: Bool
 		
 		private let textAlignment: TextAlignment
+        private let textWrapping: TextWrapping
 		private let textHorizontalPadding: CGFloat
 		private let textVerticalPadding: CGFloat
 		private let font: UIFont
@@ -61,6 +62,7 @@ public struct TextView: View {
 			text: Binding<String>,
 			isEditing: Binding<Bool>,
 			textAlignment: TextAlignment,
+            textWrapping: TextWrapping,
 			textHorizontalPadding: CGFloat,
 			textVerticalPadding: CGFloat,
 			font: UIFont,
@@ -83,6 +85,7 @@ public struct TextView: View {
 			_isEditing = isEditing
 			
 			self.textAlignment = textAlignment
+            self.textWrapping = textWrapping
 			self.textHorizontalPadding = textHorizontalPadding
 			self.textVerticalPadding = textVerticalPadding
 			self.font = font
@@ -127,6 +130,7 @@ public struct TextView: View {
 			}
 			
 			textView.textAlignment = textAlignment
+            textView.textContainer.lineBreakMode = textWrapping
 			textView.font = font
 			textView.textColor = textColor
 			textView.backgroundColor = backgroundColor
@@ -157,6 +161,7 @@ public struct TextView: View {
 	}
 	
 	public typealias TextAlignment = NSTextAlignment
+    public typealias TextWrapping = NSLineBreakMode
 	public typealias ContentType = UITextContentType
 	public typealias Autocorrection = UITextAutocorrectionType
 	public typealias Autocapitalization = UITextAutocapitalizationType
@@ -168,6 +173,7 @@ public struct TextView: View {
 	@Binding private var isEditing: Bool
 	
 	private let placeholder: String?
+    private let textWrapping: TextWrapping
 	private let textAlignment: TextAlignment
 	private let textHorizontalPadding: CGFloat
 	private let textVerticalPadding: CGFloat
@@ -196,6 +202,7 @@ public struct TextView: View {
 		isEditing: Binding<Bool>,
 		placeholder: String? = nil,
 		textAlignment: TextAlignment = .left,
+        textWrapping: TextWrapping = .byWordWrapping,
 		textHorizontalPadding: CGFloat = 0,
 		textVerticalPadding: CGFloat = 7,
 		placeholderAlignment: Alignment = .topLeading,
@@ -223,6 +230,7 @@ public struct TextView: View {
 		
 		self.placeholder = placeholder
 		self.textAlignment = textAlignment
+        self.textWrapping = textWrapping
 		self.textHorizontalPadding = textHorizontalPadding
 		self.textVerticalPadding = textVerticalPadding
 		self.placeholderAlignment = placeholderAlignment
@@ -255,6 +263,7 @@ public struct TextView: View {
 			text: $text,
 			isEditing: $isEditing,
 			textAlignment: textAlignment,
+            textWrapping: textWrapping,
 			textHorizontalPadding: textHorizontalPadding,
 			textVerticalPadding: textVerticalPadding,
 			font: font,
